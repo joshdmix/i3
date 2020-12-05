@@ -104,6 +104,11 @@ bindsym $mod+a focus parent
 
 # focus the child container
 #bindsym $mod+d focus child
+#
+# xrandr --output HDMI-A-0 --primary
+workspace 1 output primary
+workspace 2 output DisplayPort-1
+workspace 3 output DisplayPort-2
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
@@ -180,4 +185,21 @@ bindsym $mod+r mode "resize"
 # finds out, if available)
 bar {
         status_command i3status
+}
+
+set $displayMode "Set display mode [b]asic"
+bindsym $mod+x mode $displayMode
+mode $displayMode {
+    bindsym w exec "\
+                ~/.config/i3/scripts/basic.sh && \
+                mode "default"
+    # bindsym h exec "\
+    #             ~/.config/i3/scripts/home-display.sh && \
+    #             mode "default"
+    # bindsym l exec "\
+    #             ~/.config/i3/scripts/laptop-display.sh && \
+    #             mode "default"
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
 }
